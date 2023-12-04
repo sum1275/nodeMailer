@@ -6,6 +6,7 @@ const app = express();
 const port=process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
+require('dotenv').config()
 
 app.post('/send-email', async (req, res) => {
   try {
@@ -16,8 +17,8 @@ console.log(req.body);
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'sumitsinha215@gmail.com', // Replace with your Gmail email
-        pass: 'lsnsfnglotlbecon' // Replace with your Gmail password or an app-specific password
+        user: process.env.TRANSPORTER_USER, // Replace with your Gmail email
+        pass: process.env.TRANSPORTER_PASSWORD // Replace with your Gmail password or an app-specific password
       }
     });
 
